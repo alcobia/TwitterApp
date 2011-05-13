@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JSON/JSON.h"
+#import "JSON/SBJsonStreamParser.h"
 
 @interface TwitterApp2ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {

@@ -11,7 +11,6 @@
 
 @implementation TwitterApp2ViewController
 
-@synthesize rspData;
 @synthesize tblView;
 @synthesize tweets;
 
@@ -24,40 +23,6 @@
 	NSString *text = [dict objectForKey:@"text"];
 	tweet.text = text;
 	NSLog(@"Tweet: '%@'", text);
-}
-
-- (IBAction)startStreaming {
-	[userName resignFirstResponder];
-	[password resignFirstResponder];
-    
-	// We don't want *all* the individual messages from the
-	// SBJsonStreamParser, just the top-level objects. The stream
-	// parser adapter exists for this purpose.
-	adapter = [SBJsonStreamParserAdapter new];
-    
-	// Set ourselves as the delegate, so we receive the messages
-	// from the adapter.
-	adapter.delegate = self;
-    
-	// Create a new stream parser..
-	parser = [SBJsonStreamParser new];
-    
-	// .. and set our adapter as its delegate.
-	parser.delegate = adapter;
-    
-	// Normally it's an error if JSON is followed by anything but
-	// whitespace. Setting this means that the parser will be
-	// expecting the stream to contain multiple whitespace-separated
-	// JSON documents.
-	parser.multi = YES;
-    
-	NSString *url = @"http://api.twitter.com/1/statuses/public_timeline.json";
-    
-	NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url]
-											  cachePolicy:NSURLRequestUseProtocolCachePolicy
-										  timeoutInterval:60.0];
-    
-	[[[NSURLConnection alloc] initWithRequest:theRequest delegate:self] autorelease];
 }	
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -156,7 +121,34 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    // We don't want *all* the individual messages from the
+	// SBJsonStreamParser, just the top-level objects. The stream
+	// parser adapter exists for this purpose.
+	adapter = [SBJsonStreamParserAdapter new];
     
+	// Set ourselves as the delegate, so we receive the messages
+	// from the adapter.
+	adapter.delegate = self;
+    
+	// Create a new stream parser..
+	parser = [SBJsonStreamParser new];
+    
+	// .. and set our adapter as its delegate.
+	parser.delegate = adapter;
+    
+	// Normally it's an error if JSON is followed by anything but
+	// whitespace. Setting this means that the parser will be
+	// expecting the stream to contain multiple whitespace-separated
+	// JSON documents.
+	parser.multi = YES;
+    
+	NSString *url = @"http://api.twitter.com/1/statuses/public_timeline.json";
+    
+	NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url]
+											  cachePolicy:NSURLRequestUseProtocolCachePolicy
+			           							  timeoutInterval:60.0];
+    
+	[[[NSURLConnection alloc] initWithRequest:theRequest delegate:self] autorelease];
     
     [super viewDidLoad];
 }

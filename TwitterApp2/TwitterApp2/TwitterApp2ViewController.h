@@ -7,20 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JSON/JSON.h"
-#import "JSON/SBJsonStreamParser.h"
+#import "JSON.h"
 
 @interface TwitterApp2ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     IBOutlet UITableView *tblView;
     NSArray *tweets;
+    
     SBJsonStreamParser *parser;
     SBJsonStreamParserAdapter *adapter;
-    
-    
-}
 
--(IBAction) startStreaming;
+}
 
 @property(nonatomic,retain) IBOutlet UITableView *tblView;
 @property(nonatomic,retain) NSArray *tweets;

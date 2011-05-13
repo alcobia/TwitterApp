@@ -7,7 +7,7 @@
 //
 
 #import "TwitterApp2ViewController.h"
-#import "JSON/JSON.h"
+#import "JSON.h"
 
 @implementation TwitterApp2ViewController
 
@@ -20,23 +20,13 @@
 }
 
 - (void)parser:(SBJsonStreamParser *)parser foundObject:(NSDictionary *)dict {
-	NSString *text = [dict objectForKey:@"text"];
-	tweet.text = text;
+	NSArray *text = [dict objectForKey:@"text"];
+	tweets = text;
 	NSLog(@"Tweet: '%@'", text);
 }	
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	NSLog(@"Connection didReceiveResponse: %@ - %@", response, [response MIMEType]);
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	NSLog(@"Connection didReceiveAuthenticationChallenge: %@", challenge);
-    
-	NSURLCredential *credential = [NSURLCredential credentialWithUser:userName.text
-															 password:password.text
-														  persistence:NSURLCredentialPersistenceForSession];
-    
-	[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -128,7 +118,7 @@
     
 	// Set ourselves as the delegate, so we receive the messages
 	// from the adapter.
-	adapter.delegate = self;
+	//adapter.delegate = self;
     
 	// Create a new stream parser..
 	parser = [SBJsonStreamParser new];

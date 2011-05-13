@@ -23,7 +23,6 @@
 -(IBAction) startStreaming;
 
 @property(nonatomic,retain) IBOutlet UITableView *tblView;
-@property(nonatomic,retain) NSMutableData *rspData;
 @property(nonatomic,retain) NSArray *tweets;
 
 

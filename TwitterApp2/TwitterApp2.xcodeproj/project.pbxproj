@@ -180,7 +180,6 @@
 		FCD72DA7137C2CD10073EA7C /* TwitterApp2 */ = {
 			isa = PBXGroup;
 			children = (
-				FC785D49137D3F3400A68A98 /* JSON */,
 				FCD72DB0137C2CD10073EA7C /* TwitterApp2AppDelegate.h */,
 				FCD72DB1137C2CD10073EA7C /* TwitterApp2AppDelegate.m */,
 				FCD72DB3137C2CD10073EA7C /* MainWindow.xib */,
@@ -195,6 +194,7 @@
 		FCD72DA8137C2CD10073EA7C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FC785D49137D3F3400A68A98 /* JSON */,
 				FCD72DA9137C2CD10073EA7C /* TwitterApp2-Info.plist */,
 				FCD72DAA137C2CD10073EA7C /* InfoPlist.strings */,
 				FCD72DAD137C2CD10073EA7C /* TwitterApp2-Prefix.pch */,

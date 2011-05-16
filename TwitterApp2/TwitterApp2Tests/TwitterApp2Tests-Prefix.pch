@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'TwitterApp2Tests' target in the 'TwitterApp2Tests' project
-//
-
-#ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-#endif

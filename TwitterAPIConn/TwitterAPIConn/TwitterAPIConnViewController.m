@@ -11,26 +11,71 @@
 
 @implementation TwitterAPIConnViewController
 
-@synthesize dicTweets;
+@synthesize statuses;
 @synthesize tblView;
+@synthesize textTweet;
+@synthesize createdTweet;
+@synthesize nameUser;
+@synthesize imgUser;
+@synthesize descriptionUser;
+
+//método para quando é carregado o botao back da view seguinte que é mostrada, remover a mesma e mostrar a view anterior.
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    
+}
+
+-(IBAction)transitionFlip2{    
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:1.5];	
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+	
+    //remove a view onde sao mostrados os detalhes da informaçao da célula
+    [view1 removeFromSuperview];
+        
+	[UIView commitAnimations];	
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [dicTweets count];
+	return [statuses count];
 }
 
-// Override to support row selection in the table view.
+// Override to support row selection in the table view. 
+//Este método serve para mostarr outra view com os detalhes da informaçao quando uma célula é carregada
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    //método para abrir janela com os detalhes do tweet
+    int index = indexPath.row;
+    [UIView beginAnimations:nil context:NULL];
+    
+    //define o tempo de duraçao da transition
+	[UIView setAnimationDuration:1.5];	
+	
+    //define o tipo de transition entre as views
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+	
+    //adiciona (sobrepoe) a view seguinte na self view
+    [self.view addSubview:view1];
+    [lblNameUser setText:[nameUser objectAtIndex:index]];
+    [lblCreatedAt setText:[createdTweet objectAtIndex:index]];
+    [lbltweetText setText:[textTweet objectAtIndex:index]];
+    [lbldescriptionUser setText:[descriptionUser objectAtIndex:index]];
+    
+    id urlPath = [imgUser objectAtIndex:index];
+    NSURL *url = [NSURL URLWithString:urlPath];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [UIImage imageWithData:data];
+    [imageUser setImage:image];
+	
+    //executa finalmente a animaçao
+	[UIView commitAnimations];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{    
     int index = indexPath.row;
-    
     // Configurar célula
-    UITableViewCell *cell = (UITableViewCell *)[tblView dequeueReusableCellWithIdentifier:@"cell"];
+    UITableViewCell *cell =[tblView dequeueReusableCellWithIdentifier:@"cell"];
     
     //criar célula
     if (cell == nil){
@@ -38,15 +83,19 @@
     }    
     
     //afectar célula com os dados recebidos
-    cell.textLabel.text = [[dicTweets objectAtIndex:index] objectForKey: @"text"];
+    cell.textLabel.text = [textTweet objectAtIndex:index];
     
     //definir detalhes
-    cell.detailTextLabel.text = [[dicTweets objectAtIndex:index] objectForKey: @"location"]; 
-     
+    cell.detailTextLabel.text = [createdTweet  objectAtIndex:index];
+    
     //definir imagem
-    NSURL *url = [NSURL URLWithString:[[dicTweets objectAtIndex:index] objectForKey:@"profile_image_url"]];  
-    NSData *data = [NSData dataWithContentsOfURL:url];  
-    cell.imageView.image = [UIImage imageWithData:data];  
+    id urlPath = [imgUser objectAtIndex:index];
+    NSURL *url = [NSURL URLWithString:urlPath];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [UIImage imageWithData:data];
+    cell.imageView.image = image;
+    
+    //definir o estilo de célula seleccionada
     cell.selectionStyle = UITableViewCellSelectionStyleGray; 
 
     return cell;
@@ -54,6 +103,7 @@
 
 - (void)dealloc
 {
+    [view1 release];
     [super dealloc];
 }
 
@@ -70,9 +120,9 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
-{
+{   
     [super viewDidLoad];
-    
+
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     
     //definir o url com o pedido para a timeline do twitter
@@ -84,10 +134,35 @@
     //receber a reposta em json numa string
     NSString *json_string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
     
-    //converter dados json da string num objecto(dicionário)
-    dicTweets = [parser objectWithString:json_string error:nil];
-}
+    //Passar a informaçao dos tweets para um array/dicionário
+    statuses = [parser objectWithString:json_string error:nil];
 
+    //criaçao de arrays estáticos (init e o alloc permitem, a inserçao de novos objectos no array, por isso é necessário faze-lo), para conter a informaçao pretendida
+    NSMutableArray *text = [[NSMutableArray alloc]init];
+    NSMutableArray *createdAt = [[NSMutableArray alloc]init];
+    NSMutableArray *name = [[NSMutableArray alloc]init];
+    NSMutableArray *profileImgUrl = [[NSMutableArray alloc]init];
+    NSMutableArray *description = [[NSMutableArray alloc]init];
+    
+    int i=0;
+    //correr o array tweets
+    for(NSDictionary *dic in statuses){
+        //forma de inserir um novo objecto no array
+        [text insertObject:[dic objectForKey:@"text"] atIndex:i];
+        [createdAt insertObject:[dic objectForKey:@"created_at"] atIndex:i];
+        
+        NSDictionary *user = [dic objectForKey:@"user"];
+
+        [name insertObject:[user objectForKey:@"name"] atIndex:i];
+        [profileImgUrl insertObject:[user objectForKey:@"profile_image_url"] atIndex:i];
+        [description insertObject:[user objectForKey:@"description"] atIndex:i];
+        
+        i++;
+    }
+    
+    //afectar as variáveis NSArray criadas no ficheiro TwitterAPIConnViewController, com os arrays construídos em runtime, da informaçao (que se quer) 
+    textTweet = text; createdTweet = createdAt;nameUser = name;imgUser = profileImgUrl;descriptionUser=description;
+}
 
 - (void)viewDidUnload
 {

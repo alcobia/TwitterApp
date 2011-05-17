@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC0B6A3313811D8600A5C998 /* TwitterDetailTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0B6A3113811D8600A5C998 /* TwitterDetailTweet.m */; };
-		FC0B6A3413811D8600A5C998 /* TwitterDetailTweet.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC0B6A3213811D8600A5C998 /* TwitterDetailTweet.xib */; };
 		FC78601E137D999F00A68A98 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC78601D137D999F00A68A98 /* UIKit.framework */; };
 		FC786020137D999F00A68A98 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC78601F137D999F00A68A98 /* Foundation.framework */; };
 		FC786022137D999F00A68A98 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC786021137D999F00A68A98 /* CoreGraphics.framework */; };
@@ -42,9 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FC0B6A3013811D8600A5C998 /* TwitterDetailTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterDetailTweet.h; sourceTree = "<group>"; };
-		FC0B6A3113811D8600A5C998 /* TwitterDetailTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterDetailTweet.m; sourceTree = "<group>"; };
-		FC0B6A3213811D8600A5C998 /* TwitterDetailTweet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterDetailTweet.xib; sourceTree = "<group>"; };
 		FC786019137D999F00A68A98 /* TwitterAPIConn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterAPIConn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC78601D137D999F00A68A98 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC78601F137D999F00A68A98 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -142,9 +137,6 @@
 				FC786033137D999F00A68A98 /* TwitterAPIConnViewController.m */,
 				FC786035137D999F00A68A98 /* TwitterAPIConnViewController.xib */,
 				FC786024137D999F00A68A98 /* Supporting Files */,
-				FC0B6A3013811D8600A5C998 /* TwitterDetailTweet.h */,
-				FC0B6A3113811D8600A5C998 /* TwitterDetailTweet.m */,
-				FC0B6A3213811D8600A5C998 /* TwitterDetailTweet.xib */,
 			);
 			path = TwitterAPIConn;
 			sourceTree = "<group>";
@@ -271,7 +263,6 @@
 				FC786028137D999F00A68A98 /* InfoPlist.strings in Resources */,
 				FC786031137D999F00A68A98 /* MainWindow.xib in Resources */,
 				FC786037137D999F00A68A98 /* TwitterAPIConnViewController.xib in Resources */,
-				FC0B6A3413811D8600A5C998 /* TwitterDetailTweet.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +306,6 @@
 				FC786064137D99B900A68A98 /* SBJsonBase.m in Sources */,
 				FC786065137D99B900A68A98 /* SBJsonParser.m in Sources */,
 				FC786066137D99B900A68A98 /* SBJsonWriter.m in Sources */,
-				FC0B6A3313811D8600A5C998 /* TwitterDetailTweet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

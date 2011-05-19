@@ -2,7 +2,7 @@
 //  TwitterAPIConnViewController.m
 //  TwitterAPIConn
 //
-//  Created by Lu√≠s Alcobia on 13/05/2011.
+//  Created by Luís Alcobia on 13/05/2011.
 //  Copyright 2011 ArquiConsult. All rights reserved.
 //
 
@@ -14,31 +14,42 @@
 @synthesize tblView;
 
 @synthesize tweetsReceived;
+
 @synthesize textTweet;
 @synthesize createdTweet;
 @synthesize nameUser;
 @synthesize imgUser;
-@synthesize descriptionUser;
 
 @synthesize user;
 
--(IBAction)log
-{
-    user = txtUser.text;
-    txtUser.text = @"";
-    
+-(IBAction)meusTweets
+{        
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:1.5];	
 	[UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:YES];
     
-    [view2 removeFromSuperview];
+    if([[[NSUserDefaults standardUserDefaults] stringForKey:@"enabled_preference"] isEqualToString:@"0"])
+    {
+        user = txtfieldUser.text;
+        txtfieldUser.text = @"";
+    }
+    else if([[[NSUserDefaults standardUserDefaults] stringForKey:@"enabled_preference"] isEqualToString:@"1"])
+    {
+        user = txtfieldUser.text;
+        txtfieldUser.text = @"";
+        [[NSUserDefaults standardUserDefaults] setValue:user forKey:@"name_preference"];
+    }
     
+    [view2 removeFromSuperview];
+        
     [UIView commitAnimations];
     
     NSString *url = [[NSString alloc] initWithFormat:@"http://api.twitter.com/1/statuses/user_timeline.json?screen_name=%@",user];
     [self connectURL:url];
     
     [tblView reloadData];
+    
+    navControllerSelfView.title = @"Meus Tweets";
 }
 
 -(IBAction)transitionFlip2{    
@@ -52,15 +63,29 @@
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-    if([item.title isEqualToString:@"My Tweets"])
+    if([item.title isEqualToString:@"Meus Tweets"])
     {
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:1.5];	
-        [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
-        
-        [self.view addSubview:view2];
-        
-        [UIView commitAnimations];
+        if([[[NSUserDefaults standardUserDefaults] stringForKey:@"name_preference"] isEqualToString:@""])
+        {
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:1.5];	
+            [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
+            
+            [self.view addSubview:view2];
+            
+            [UIView commitAnimations];
+        }
+        else
+        {
+            NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"name_preference"];
+            NSString *url = [[NSString alloc] initWithFormat:@"http://api.twitter.com/1/statuses/user_timeline.json?screen_name=%@",username];
+            
+            [self connectURL:url];
+            
+            [tblView reloadData];
+            
+            navControllerSelfView.title = @"Meus Tweets";
+        }
     }
     else
     {
@@ -69,9 +94,12 @@
         [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
         
         [self connectURL:@"http://twitter.com/statuses/public_timeline.json"];
+        
         [tblView reloadData];//actualiza a table view com os novos dados do array
         
         [UIView commitAnimations];
+        
+        navControllerSelfView.title = @"Tweets Publicos";
     }
 }
 
@@ -118,7 +146,6 @@
     createdTweet = createdAt;
     nameUser = name;
     imgUser = profileImgUrl;
-    descriptionUser=description;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -142,12 +169,12 @@
     //adicionar a view 1 à self.view
     [self.view addSubview:view1];
     
-    [lblNameUser setText:[nameUser objectAtIndex:indexPath.row]];//afectar label com o nome do user
-    [lblCreatedAt setText:[createdTweet objectAtIndex:indexPath.row]];
-    [txtTextTweet setText:[textTweet objectAtIndex:indexPath.row]];//afectar a text view com o texto do tweet
-    [txtTextTweet setEditable:NO];//definir a text view como não editável
-    [txtDescriptionUser setText:[descriptionUser objectAtIndex:indexPath.row]];
-    [txtDescriptionUser setEditable:NO];
+    [txtviewNameUser setText:[nameUser objectAtIndex:indexPath.row]];//afectar a text view com o nome do user que criou o tweet
+    [txtviewNameUser setEditable:NO];//definir a text view como não editável
+    [txtviewCreatedAt setText:[createdTweet objectAtIndex:indexPath.row]];
+    [txtviewCreatedAt setEditable:NO];
+    [txtviewTextTweet setText:[textTweet objectAtIndex:indexPath.row]];
+    [txtviewTextTweet setEditable:NO];
     
     id urlPath = [imgUser objectAtIndex:indexPath.row];
     NSURL *url = [NSURL URLWithString:urlPath];
@@ -206,7 +233,6 @@
 - (void)viewDidLoad
 {   
     [super viewDidLoad];
-    [self connectURL:@"http://twitter.com/statuses/public_timeline.json"];
 }
 
 - (void)viewDidUnload
@@ -218,8 +244,15 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    return YES;
+    // Return YES or NO (BOOL) for supported orientations
+    if(interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationLandscapeLeft)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 @end

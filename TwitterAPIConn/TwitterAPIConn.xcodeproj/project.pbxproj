@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC20E9571384260F00736692 /* poolbird.png in Resources */ = {isa = PBXBuildFile; fileRef = FC20E9551384260F00736692 /* poolbird.png */; };
+		FC20E9581384260F00736692 /* tweet_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = FC20E9561384260F00736692 /* tweet_blue.png */; };
 		FC78601E137D999F00A68A98 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC78601D137D999F00A68A98 /* UIKit.framework */; };
 		FC786020137D999F00A68A98 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC78601F137D999F00A68A98 /* Foundation.framework */; };
 		FC786022137D999F00A68A98 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC786021137D999F00A68A98 /* CoreGraphics.framework */; };
@@ -27,6 +29,8 @@
 		FC786064137D99B900A68A98 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = FC78605D137D99B900A68A98 /* SBJsonBase.m */; };
 		FC786065137D99B900A68A98 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FC78605F137D99B900A68A98 /* SBJsonParser.m */; };
 		FC786066137D99B900A68A98 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC786061137D99B900A68A98 /* SBJsonWriter.m */; };
+		FCB76257138518F000C410BD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FCB76256138518F000C410BD /* Icon.png */; };
+		FCB7627213854DFA00C410BD /* SettingsTwitter.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCB7627113854DFA00C410BD /* SettingsTwitter.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC20E9551384260F00736692 /* poolbird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poolbird.png; sourceTree = "<group>"; };
+		FC20E9561384260F00736692 /* tweet_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweet_blue.png; sourceTree = "<group>"; };
 		FC786019137D999F00A68A98 /* TwitterAPIConn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterAPIConn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC78601D137D999F00A68A98 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC78601F137D999F00A68A98 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,6 +77,8 @@
 		FC78605F137D99B900A68A98 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		FC786060137D99B900A68A98 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		FC786061137D99B900A68A98 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		FCB76256138518F000C410BD /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		FCB7627113854DFA00C410BD /* SettingsTwitter.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SettingsTwitter.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +137,9 @@
 		FC786023137D999F00A68A98 /* TwitterAPIConn */ = {
 			isa = PBXGroup;
 			children = (
+				FCB76256138518F000C410BD /* Icon.png */,
+				FC20E9551384260F00736692 /* poolbird.png */,
+				FC20E9561384260F00736692 /* tweet_blue.png */,
 				FC786056137D99B900A68A98 /* JSON */,
 				FC78602C137D999F00A68A98 /* TwitterAPIConnAppDelegate.h */,
 				FC78602D137D999F00A68A98 /* TwitterAPIConnAppDelegate.m */,
@@ -137,6 +148,7 @@
 				FC786033137D999F00A68A98 /* TwitterAPIConnViewController.m */,
 				FC786035137D999F00A68A98 /* TwitterAPIConnViewController.xib */,
 				FC786024137D999F00A68A98 /* Supporting Files */,
+				FCB7627113854DFA00C410BD /* SettingsTwitter.bundle */,
 			);
 			path = TwitterAPIConn;
 			sourceTree = "<group>";
@@ -263,6 +275,10 @@
 				FC786028137D999F00A68A98 /* InfoPlist.strings in Resources */,
 				FC786031137D999F00A68A98 /* MainWindow.xib in Resources */,
 				FC786037137D999F00A68A98 /* TwitterAPIConnViewController.xib in Resources */,
+				FC20E9571384260F00736692 /* poolbird.png in Resources */,
+				FC20E9581384260F00736692 /* tweet_blue.png in Resources */,
+				FCB76257138518F000C410BD /* Icon.png in Resources */,
+				FCB7627213854DFA00C410BD /* SettingsTwitter.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

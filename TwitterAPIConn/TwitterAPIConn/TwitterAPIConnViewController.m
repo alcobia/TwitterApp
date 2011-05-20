@@ -9,8 +9,6 @@
 #import "TwitterAPIConnViewController.h"
 #import "JSON.h"
 
-#define HPI 1.0
-
 @implementation TwitterAPIConnViewController
 
 @synthesize tblView;
@@ -252,31 +250,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES or NO (BOOL) for supported orientations
-    if(interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationLandscapeLeft)
-    {
         return YES;
-    }
-    else
-    {
-        return NO;
-    }    
 }
-
-/*
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation 
-{
-	switch (interfaceOrientation) 
-    {
-        case UIInterfaceOrientationPortrait:
-            tblView.transform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(HPI), -90, -90);
-        break;
-  
-        case UIInterfaceOrientationLandscapeLeft: 
-            tblView.transform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(HPI), +90, +90);
-        break;			
-    }
-}
- */
 
 @end

@@ -9,6 +9,8 @@
 #import "TwitterAPIConnViewController.h"
 #import "JSON.h"
 
+#define HPI 1.0
+
 @implementation TwitterAPIConnViewController
 
 @synthesize tblView;
@@ -77,10 +79,16 @@
         }
         else
         {
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:1.5];	
+            [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
+            
             NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"name_preference"];
             NSString *url = [[NSString alloc] initWithFormat:@"http://api.twitter.com/1/statuses/user_timeline.json?screen_name=%@",username];
             
             [self connectURL:url];
+            
+            [UIView commitAnimations];
             
             [tblView reloadData];
             
@@ -252,7 +260,23 @@
     else
     {
         return NO;
+    }    
+}
+
+/*
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation 
+{
+	switch (interfaceOrientation) 
+    {
+        case UIInterfaceOrientationPortrait:
+            tblView.transform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(HPI), -90, -90);
+        break;
+  
+        case UIInterfaceOrientationLandscapeLeft: 
+            tblView.transform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(HPI), +90, +90);
+        break;			
     }
 }
+ */
 
 @end

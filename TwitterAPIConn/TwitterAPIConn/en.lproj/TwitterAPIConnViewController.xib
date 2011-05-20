@@ -150,7 +150,7 @@
 			</object>
 			<object class="IBUIView" id="300115642">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUINavigationBar" id="950039787">
@@ -330,7 +330,7 @@
 			</object>
 			<object class="IBUIView" id="977532245">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUITextField" id="270619577">
@@ -650,8 +650,8 @@
 							<reference ref="372580496"/>
 							<reference ref="595811758"/>
 							<reference ref="859328831"/>
-							<reference ref="303840142"/>
 							<reference ref="950039787"/>
+							<reference ref="303840142"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
